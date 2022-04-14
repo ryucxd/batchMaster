@@ -12,7 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>S:\Design and Supply CSharp\MiniApps\batchMaster\</PublishUrl>
+    <PublishUrl>S:\Design and Supply CSharp\MiniApps\batchMasterAuto\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -22,8 +22,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\designsvr1\apps\Design and Supply CSharp\MiniApps\batchMaster\</InstallUrl>
-    <ApplicationRevision>2</ApplicationRevision>
+    <InstallUrl>\\designsvr1\apps\Design and Supply CSharp\MiniApps\batchMasterAuto\</InstallUrl>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

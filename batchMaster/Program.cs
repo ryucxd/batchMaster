@@ -12,8 +12,8 @@ namespace batchMaster
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter batch number...");
-            string temp = Console.ReadLine();
+            
+            string temp =  args[0];
 
             string sql = "select batch_programs.program_no from dbo.batch " +
                 "left join dbo.batch_programs on batch.door_id = dbo.batch_programs.door_id " +
@@ -65,7 +65,7 @@ namespace batchMaster
                 }
                 conn.Close();
             }
-            Console.ReadLine();
+            //Console.ReadLine();
 
         }
     }
