@@ -14,6 +14,7 @@ namespace batchMaster
         {
             
             string temp =  args[0];
+            int send_email = 0;
 
             string sql = "select batch_programs.program_no from dbo.batch " +
                 "left join dbo.batch_programs on batch.door_id = dbo.batch_programs.door_id " +
@@ -47,7 +48,7 @@ namespace batchMaster
                                 drNumber[0] = row[0].ToString();
                                 badNumbers.Rows.Add(drNumber);
                             }
-                        }
+                        } 
                     }
                     if (badNumbers.Rows.Count > 0)
                     {
@@ -55,17 +56,30 @@ namespace batchMaster
                         Console.WriteLine("-------------------------------------------------");
                         foreach (DataRow row in badNumbers.Rows)
                         {
+                            send_email = -1;
                             Console.WriteLine(row[0].ToString());
+                            //insert into batch_master_log
+                            sql = "INSERT INTO dbo.batch_master_log (batch_id,program_number,error_time) VALUES (" + temp + ",'" + row[0].ToString() + "',GETDATE())";
+                            using (SqlCommand batchMasterCmd = new SqlCommand(sql, conn))
+                                batchMasterCmd.ExecuteNonQuery();
                         }
 
                         Console.WriteLine("-------------------------------------------------");
+                        //can fire usp here
+                        using (SqlCommand batchMasterEmailCmd = new SqlCommand("usp_batch_master_email", conn))
+                        {
+                            batchMasterEmailCmd.CommandType = CommandType.StoredProcedure;
+                            batchMasterEmailCmd.Parameters.Add("@batchID", SqlDbType.Int).Value = Convert.ToInt32(temp);
+
+                            batchMasterEmailCmd.ExecuteNonQuery();
+                        }
                     }
                     else
                         Console.WriteLine("No errors found...");
                 }
                 conn.Close();
             }
-            //Console.ReadLine();
+          //  Console.ReadLine();
 
         }
     }
